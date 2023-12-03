@@ -6,10 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableScheduling
 @SpringBootApplication(scanBasePackages = "pub.developers.forum")
 @MapperScan(value = {"pub.developers.forum.infrastructure.dal.dao"})
+@EnableSwagger2
 public class ForumJavaApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
