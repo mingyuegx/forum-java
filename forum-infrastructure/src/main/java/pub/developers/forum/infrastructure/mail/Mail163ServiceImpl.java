@@ -99,7 +99,6 @@ public class Mail163ServiceImpl implements MailService {
     }
 
     private Properties getProperties() {
-        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 
         Properties props = System.getProperties();
         props.setProperty("mail.smtp.host", host);

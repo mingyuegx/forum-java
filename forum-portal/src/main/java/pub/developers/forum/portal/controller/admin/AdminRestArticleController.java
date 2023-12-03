@@ -1,5 +1,7 @@
 package pub.developers.forum.portal.controller.admin;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import pub.developers.forum.api.model.PageRequestModel;
 import pub.developers.forum.api.model.PageResponseModel;
@@ -26,6 +28,7 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("/admin-rest/article")
+@Api("文章管理控制")
 public class AdminRestArticleController {
 
     @Resource
@@ -34,6 +37,7 @@ public class AdminRestArticleController {
     @Resource
     private PostsApiService postsApiService;
 
+    @ApiOperation("查询文章所有类型")
     @PostMapping("/all-type")
     public ResultModel<List<ArticleQueryTypesResponse>> allAdminTypes(HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
@@ -41,6 +45,7 @@ public class AdminRestArticleController {
         return articleApiService.queryAdminTypes();
     }
 
+    @ApiOperation("查询文章列表（分页）")
     @PostMapping("/page")
     public ResultModel<PageResponseModel<ArticleUserPageResponse>> page(@RequestBody PageRequestModel<ArticleAdminPageRequest> pageRequestModel
             , HttpServletRequest request) {
