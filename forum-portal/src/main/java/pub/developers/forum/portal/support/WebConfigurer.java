@@ -20,11 +20,16 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Resource
     private CorsInterceptor corsInterceptor;
 
+    @Resource
+    private TimeInterceptor timeInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(globalViewInterceptor)
                 .addPathPatterns("/**");
         registry.addInterceptor(corsInterceptor)
+                .addPathPatterns("/**");
+        registry.addInterceptor(timeInterceptor)
                 .addPathPatterns("/**");
     }
 

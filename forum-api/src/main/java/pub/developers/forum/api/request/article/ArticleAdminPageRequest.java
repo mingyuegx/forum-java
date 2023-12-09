@@ -1,5 +1,6 @@
 package pub.developers.forum.api.request.article;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,18 +19,23 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class ArticleAdminPageRequest implements Serializable {
 
+    @ApiModelProperty(value = "类型id")
     private Long typeId;
 
+    @ApiModelProperty(value = "文章状态")
     private String auditState;
 
     private Boolean official;
 
+    @ApiModelProperty("是否置顶")
     private Boolean top;
 
     private Boolean marrow;
 
+    @ApiModelProperty("用户id")
     private Long userId;
 
+    @ApiModelProperty("标题")
     private String title;
 
 }

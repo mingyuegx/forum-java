@@ -1,6 +1,7 @@
 package pub.developers.forum.app.manager;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import pub.developers.forum.api.model.PageResponseModel;
 import pub.developers.forum.api.request.AdminBooleanRequest;
@@ -25,6 +26,7 @@ import pub.developers.forum.domain.repository.TagRepository;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -46,6 +48,9 @@ public abstract class AbstractPostsManager {
     CommentRepository commentRepository;
 
     Set<Tag> checkTags(Set<Long> tagIds) {
+        if (CollectionUtils.isEmpty(tagIds)) {
+            return new HashSet<>();
+        }
         List<Tag> tags = tagRepository.queryByIds(tagIds);
         Set<Tag> selectTags = SafesUtil.ofList(tags).stream()
                 .filter(tag -> AuditStateEn.PASS.equals(tag.getAuditState()))

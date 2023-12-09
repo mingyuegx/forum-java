@@ -11,7 +11,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableScheduling
 @SpringBootApplication(scanBasePackages = "pub.developers.forum")
 @MapperScan(value = {"pub.developers.forum.infrastructure.dal.dao"})
-@EnableSwagger2
+//@EnableSwagger2
 public class ForumJavaApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

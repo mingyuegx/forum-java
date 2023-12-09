@@ -28,7 +28,7 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("/admin-rest/article")
-@Api("文章管理控制")
+@Api(tags = "文章管理控制")
 public class AdminRestArticleController {
 
     @Resource
