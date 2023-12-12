@@ -25,8 +25,8 @@ public class WebConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(globalViewInterceptor)
-                .addPathPatterns("/**");
+        //registry.addInterceptor(globalViewInterceptor)
+        //        .addPathPatterns("/**");
         registry.addInterceptor(corsInterceptor)
                 .addPathPatterns("/**");
         registry.addInterceptor(timeInterceptor)

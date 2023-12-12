@@ -27,7 +27,7 @@ import java.util.Map;
  **/
 @Controller
 @RequestMapping("/search")
-@Api(tags = "搜索文章标题模块")
+@Api(tags = "鎼滅储鏂囩珷鏍囬妯″潡")
 public class SearchController {
 
     @Resource
