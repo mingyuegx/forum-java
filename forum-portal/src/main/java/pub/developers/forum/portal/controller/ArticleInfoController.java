@@ -1,5 +1,6 @@
 package pub.developers.forum.portal.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -36,6 +37,7 @@ import java.util.stream.Collectors;
  **/
 @Controller
 @RequestMapping("/article")
+@Api(tags = "Œƒ’¬π‹¿Ì")
 public class ArticleInfoController {
 
     @Resource

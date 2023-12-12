@@ -1,6 +1,8 @@
 package pub.developers.forum.portal.controller.rest;
 
 import com.google.common.collect.Sets;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pub.developers.forum.api.model.ResultModel;
@@ -27,6 +29,7 @@ import java.util.Set;
  **/
 @RestController
 @RequestMapping("/user-rest")
+@Api(tags = "用户操作")
 public class UserRestController {
 
     @Resource
@@ -38,8 +41,8 @@ public class UserRestController {
     // .css;.js;.png;.jpeg;.jpg;.woff2;.html;.ico;.gif;.bmp;.svg;.woff;.map
     private static final Set<String> ALLOW_TYPES = Sets.newHashSet("png", "jpeg", "jpg", "ico", "gif", "bmp", "svg");
 
-    @PostMapping("/register")
-    public ResultModel<String> register(@RequestBody UserRegisterRequest request, HttpServletRequest servletRequest, HttpServletResponse response) {
+    @ApiOperation("用户注册")
+    @PostMapping("/register")    public ResultModel<String> register(@RequestBody UserRegisterRequest request, HttpServletRequest servletRequest, HttpServletResponse response) {
         request.setIp(WebUtil.requestIp(servletRequest));
         request.setUa(WebUtil.requestUa(servletRequest));
         ResultModel<String> resultModel = userApiService.register(request);
@@ -49,6 +52,7 @@ public class UserRestController {
         return resultModel;
     }
 
+    @ApiOperation("用户登录")
     @PostMapping("/login")
     public ResultModel<String> login(@RequestBody UserEmailLoginRequest request, HttpServletRequest servletRequest, HttpServletResponse response) {
         request.setIp(WebUtil.requestIp(servletRequest));
@@ -61,6 +65,7 @@ public class UserRestController {
     }
 
     @PostMapping("/update-info")
+    @ApiOperation("用户更新信息")
     public ResultModel updateInfo(@RequestBody UserUpdateInfoRequest updateInfoRequest, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 
@@ -68,6 +73,7 @@ public class UserRestController {
     }
 
     @PostMapping("/update-headimg")
+    @ApiOperation("更新用户头像，暂不可用")
     public ResultModel ResultModelupdateHeadImg(MultipartFile file, HttpServletRequest request)throws IOException {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
         //获取文件的内容
@@ -107,6 +113,7 @@ public class UserRestController {
     }
 
     @PostMapping("/update-pwd")
+    @ApiOperation("更新密码")
     public ResultModel updatePwd(@RequestBody UserUpdatePwdRequest updatePwdRequest, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 
@@ -114,6 +121,7 @@ public class UserRestController {
     }
 
     @PostMapping("/follow/{followed}")
+    @ApiOperation("关注用户")
     public ResultModel follow(@PathVariable("followed") Long followed, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 
@@ -121,6 +129,7 @@ public class UserRestController {
     }
 
     @PostMapping("/cancel-follow/{followed}")
+    @ApiOperation("取消关注用户")
     public ResultModel cancelFollow(@PathVariable("followed") Long followed, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 

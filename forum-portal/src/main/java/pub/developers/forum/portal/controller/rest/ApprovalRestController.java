@@ -1,5 +1,6 @@
 package pub.developers.forum.portal.controller.rest;
 
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 import pub.developers.forum.api.model.ResultModel;
 import pub.developers.forum.api.service.ApprovalApiService;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @RestController
 @RequestMapping("/approval-rest")
+@Api(tags = "点赞和取消点赞")
 public class ApprovalRestController {
 
     @Resource

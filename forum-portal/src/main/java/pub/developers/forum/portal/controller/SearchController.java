@@ -1,5 +1,6 @@
 package pub.developers.forum.portal.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -26,6 +27,7 @@ import java.util.Map;
  **/
 @Controller
 @RequestMapping("/search")
+@Api(tags = "搜索文章标题模块")
 public class SearchController {
 
     @Resource

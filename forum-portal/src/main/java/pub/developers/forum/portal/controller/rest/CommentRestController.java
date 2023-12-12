@@ -1,5 +1,6 @@
 package pub.developers.forum.portal.controller.rest;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class CommentRestController {
     private CommentApiService commentApiService;
 
     @PostMapping("/create")
+    @ApiOperation("针对文章进行评论")
     public ResultModel create(@RequestBody CommentCreateRequest createRequest, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 

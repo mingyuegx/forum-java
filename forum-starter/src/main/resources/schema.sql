@@ -18,7 +18,7 @@ CREATE TABLE `forum_article_type` (
   `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '记录修改时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_name_state` (`name`,`audit_state`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='文章类别表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='文章所在论坛';
 
 -- ----------------------------
 -- Table structure for forum_cache

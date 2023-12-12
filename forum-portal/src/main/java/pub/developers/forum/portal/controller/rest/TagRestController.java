@@ -1,5 +1,7 @@
 package pub.developers.forum.portal.controller.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,12 +19,14 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("/tag-rest")
+@Api(tags = "标签管理")
 public class TagRestController {
 
     @Resource
     private TagApiService tagApiService;
 
     @PostMapping("/all")
+    @ApiOperation("返回所有标签")
     public ResultModel<List<TagQueryResponse>> all() {
         return tagApiService.queryAll();
     }

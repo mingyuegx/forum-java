@@ -1,5 +1,7 @@
 package pub.developers.forum.portal.controller.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +21,14 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @RestController
 @RequestMapping("/posts-rest")
+@Api(tags = "文章管理")
 public class PostsRestController {
 
     @Resource
     private PostsApiService postsApiService;
 
     @PostMapping("/delete/{id}")
+    @ApiOperation("文章删除")
     public ResultModel delete(@PathVariable("id") Long id, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 

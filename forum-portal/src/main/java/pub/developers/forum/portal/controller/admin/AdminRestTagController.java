@@ -1,5 +1,7 @@
 package pub.developers.forum.portal.controller.admin;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +27,14 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @RestController
 @RequestMapping("/admin-rest/tag")
+@Api(tags = "管理员标签管理")
 public class AdminRestTagController {
 
     @Resource
     private TagApiService tagApiService;
 
     @PostMapping("/page")
+    @ApiOperation("管理员标签列表")
     public ResultModel<PageResponseModel<TagPageResponse>> page(@RequestBody PageRequestModel<TagPageRequest> pageRequestModel
             , HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
@@ -39,6 +43,7 @@ public class AdminRestTagController {
     }
 
     @PostMapping("/audit-state")
+    @ApiOperation("管理员标签审批状态")
     public ResultModel auditState(@RequestBody AdminBooleanRequest booleanRequest, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 
@@ -46,6 +51,7 @@ public class AdminRestTagController {
     }
 
     @PostMapping("/add")
+    @ApiOperation("管理员添加标签")
     public ResultModel add(@RequestBody TagCreateRequest request) {
         return tagApiService.create(request);
     }
