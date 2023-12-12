@@ -53,14 +53,6 @@ public class WebUtil {
     private String accessDomain;
 
     public static String cookieGetSid(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        if (!ObjectUtils.isEmpty(cookies)) {
-            for (Cookie cookie : cookies) {
-                if (WebConst.COOKIE_SID_KEY.equals(cookie.getName()) && !ObjectUtils.isEmpty(cookie.getValue())) {
-                    return cookie.getValue();
-                }
-            }
-        }
 
         String headerSid = request.getHeader(Constant.REQUEST_HEADER_TOKEN_KEY);
         if (!ObjectUtils.isEmpty(headerSid)) {

@@ -16,7 +16,7 @@ import pub.developers.forum.common.support.RequestContext;
 @Aspect
 public class ResponseBodyAspect {
 
-    @Around("execution(* pub.developers.forum.portal..*.*(..)) && @annotation(postMapping)")
+    //@Around("execution(* pub.developers.forum.portal..*.*(..)) && @annotation(postMapping)")
     public Object process(ProceedingJoinPoint joinPoint, PostMapping postMapping) throws Throwable {
         RequestContext.init();
         try {

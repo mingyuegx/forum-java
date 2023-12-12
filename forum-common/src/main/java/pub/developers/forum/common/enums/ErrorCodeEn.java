@@ -30,7 +30,7 @@ public enum ErrorCodeEn {
     DOMAIN_NOT_EXIST(7999, "不存在的领域类型"),
     DOMAIN_TYPE_NOT_EXIST(7998, "领域类型不存在"),
 
-    USER_NOT_LOGIN(8998, "用户未登陆"),
+    USER_NOT_LOGIN(8998, "用户未登录"),
     USER_NOT_EXIST(7996, "用户不存在"),
     USER_REGISTER_EMAIL_IS_EXIST(7992, "注册邮箱已存在"),
     USER_LOGIN_PWD_ERROR(7992, "登录密码错误"),

@@ -1,6 +1,9 @@
 package pub.developers.forum.portal.support;
 
+import com.alibaba.fastjson.JSON;
+import io.micrometer.core.instrument.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,8 +13,12 @@ import pub.developers.forum.api.response.user.UserInfoResponse;
 import pub.developers.forum.api.service.MessageApiService;
 import pub.developers.forum.api.service.UserApiService;
 import pub.developers.forum.common.constant.Constant;
+import pub.developers.forum.common.enums.ErrorCodeEn;
+import pub.developers.forum.common.exception.BizException;
+import pub.developers.forum.common.support.AesUtils;
 import pub.developers.forum.common.support.GlobalViewConfig;
 import pub.developers.forum.common.support.RequestContext;
+import pub.developers.forum.common.support.StringUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -28,14 +35,8 @@ import java.util.Map;
 @Component
 public class GlobalViewInterceptor extends HandlerInterceptorAdapter {
 
-    @Resource
-    private UserApiService userApiService;
-
-    @Resource
-    private MessageApiService messageApiService;
-
-    @Resource
-    private GlobalViewConfig globalViewConfig;
+    @Value("${aes-secret.key}")
+    private String key;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -43,15 +44,20 @@ public class GlobalViewInterceptor extends HandlerInterceptorAdapter {
 
         String sid = WebUtil.cookieGetSid(request);
         if (ObjectUtils.isEmpty(sid)) {
-            return true;
+            log.info("{} the sid is empty", RequestContext.getTraceId());
+            throw new BizException(ErrorCodeEn.USER_NOT_LOGIN);
+
         }
 
         if (!ObjectUtils.isEmpty(sid)) {
-            ResultModel<UserInfoResponse> resultModel = userApiService.info(sid);
-            if (resultModel.getSuccess() && !ObjectUtils.isEmpty(resultModel.getData())) {
-                WebContext.setCurrentSid(sid);
-                WebContext.setCurrentUser(resultModel.getData());
+            String userStr = AesUtils.decrypt(sid, key);
+            if (StringUtils.isBlank(userStr)) {
+                log.info("{} dectypt the sid return is empty", RequestContext.getTraceId());
+                throw new BizException(ErrorCodeEn.USER_NOT_LOGIN);
+
             }
+            WebContext.setCurrentSid(sid);
+            WebContext.setCurrentUser(JSON.parseObject(userStr, UserInfoResponse.class));
         }
 
         return true;
@@ -59,39 +65,10 @@ public class GlobalViewInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        try {
-            UserInfoResponse loginUserInfo = WebContext.getCurrentUser();
 
-            // 重定向请求不需要添加
-            if (!ObjectUtils.isEmpty(modelAndView) && !modelAndView.getViewName().startsWith(WebConst.REQUEST_REDIRECT_PREFIX)) {
-                if (!ObjectUtils.isEmpty(loginUserInfo)) {
-                    request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
-
-                    Map<String, Object> loginUser = new HashMap<>();
-                    loginUser.put("id", loginUserInfo.getId());
-                    loginUser.put("nickname", loginUserInfo.getNickname());
-                    loginUser.put("avatar", loginUserInfo.getAvatar());
-                    loginUser.put("role", loginUserInfo.getRole());
-                    loginUser.put("unReadMsgNumber", countUnRead());
-
-                    modelAndView.getModel().put("loginUser", loginUser);
-                }
-                modelAndView.getModel().put("isLogin", !ObjectUtils.isEmpty(loginUserInfo));
-
-                modelAndView.getModel().put("globalConfig", globalViewConfig);
-            }
-        } finally {
             WebContext.removeAll();
             RequestContext.removeAll();
-        }
-    }
 
-    private Long countUnRead() {
-        ResultModel<Long> countResult = messageApiService.countUnRead();
-        if (countResult.getSuccess() && !ObjectUtils.isEmpty(countResult.getData())) {
-            return countResult.getData();
-        }
-        return 0L;
     }
 
 }

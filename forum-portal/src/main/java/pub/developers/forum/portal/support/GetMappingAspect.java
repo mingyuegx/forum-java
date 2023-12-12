@@ -22,7 +22,7 @@ public class GetMappingAspect {
     @Resource
     private HttpServletRequest request;
 
-    @Around("execution(* pub.developers.forum.portal..*.*(..)) && @annotation(getMapping)")
+    //@Around("execution(* pub.developers.forum.portal..*.*(..)) && @annotation(getMapping)")
     public Object process(ProceedingJoinPoint joinPoint, GetMapping getMapping) throws Throwable {
         String toastMessage;
 
