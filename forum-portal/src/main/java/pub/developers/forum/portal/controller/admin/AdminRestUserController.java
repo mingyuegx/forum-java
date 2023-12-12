@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @RestController
 @RequestMapping("/admin-rest/user")
-@Api(tags = "ÓÃ»§¹ÜÀí")
+@Api(tags = "ç®¡ç†å‘˜ç”¨æˆ·ç®¡ç†")
 
 public class AdminRestUserController {
 
@@ -33,7 +33,7 @@ public class AdminRestUserController {
     private UserApiService userApiService;
 
     @PostMapping("/page")
-    @ApiOperation("ĞÂÔöÓÃ»§")
+    @ApiOperation("ç”¨æˆ·åˆ—è¡¨ï¼ˆåˆ†é¡µï¼‰")
     public ResultModel<PageResponseModel<UserPageResponse>> add(@RequestBody PageRequestModel<UserAdminPageRequest> pageRequestModel
             , HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
@@ -42,7 +42,7 @@ public class AdminRestUserController {
     }
 
     @PostMapping("/enable/{uid}")
-    @ApiOperation("ÓÃ»§Ê¹ÄÜ")
+    @ApiOperation("ç®¡ç†å‘˜å®¡æ ¸é€šè¿‡ç”¨æˆ·")
     public ResultModel enable(@PathVariable Long uid, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 
@@ -50,7 +50,7 @@ public class AdminRestUserController {
     }
 
     @PostMapping("/disable/{uid}")
-    @ApiOperation("ÓÃ»§ÉèÖÃ·ÇÊ¹ÄÜ")
+    @ApiOperation("ç®¡ç†å‘˜å®¡æ ¸ä¸é€šè¿‡ç”¨æˆ·")
     public ResultModel disable(@PathVariable Long uid, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 
@@ -58,7 +58,7 @@ public class AdminRestUserController {
     }
 
     @PostMapping("/page-opt-log")
-    @ApiOperation("²éÑ¯ÎÄÕÂ²Ù×÷¼ÇÂ¼")
+    @ApiOperation("ç®¡ç†å‘˜ç•Œé¢æ“ä½œè®°å½•")
     public ResultModel<PageResponseModel<UserOptLogPageResponse>> pageOptLog(@RequestBody PageRequestModel<UserOptLogPageRequest> pageRequestModel
             , HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
@@ -67,7 +67,7 @@ public class AdminRestUserController {
     }
 
     @PostMapping("/update-role")
-    @ApiOperation("ÓÃ»§ÉèÖÃ½ÇÉ«")
+    @ApiOperation("ç®¡ç†å‘˜æ›´æ–°ç”¨æˆ·è§’è‰²")
     public ResultModel updateRole(@RequestBody AdminBooleanRequest booleanRequest
             , HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));

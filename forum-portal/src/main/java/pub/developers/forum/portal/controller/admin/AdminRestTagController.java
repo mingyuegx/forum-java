@@ -27,14 +27,14 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @RestController
 @RequestMapping("/admin-rest/tag")
-@Api(tags = "¹ÜÀíÔ±±êÇ©¹ÜÀí")
+@Api(tags = "ç®¡ç†å‘˜ç®¡ç†æ ‡ç­¾")
 public class AdminRestTagController {
 
     @Resource
     private TagApiService tagApiService;
 
     @PostMapping("/page")
-    @ApiOperation("¹ÜÀíÔ±±êÇ©ÁĞ±í")
+    @ApiOperation("æ ‡ç­¾åˆ—è¡¨ï¼ˆåˆ†é¡µï¼‰")
     public ResultModel<PageResponseModel<TagPageResponse>> page(@RequestBody PageRequestModel<TagPageRequest> pageRequestModel
             , HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
@@ -43,7 +43,7 @@ public class AdminRestTagController {
     }
 
     @PostMapping("/audit-state")
-    @ApiOperation("¹ÜÀíÔ±±êÇ©ÉóÅú×´Ì¬")
+    @ApiOperation("ç®¡ç†å‘˜æ ‡ç­¾å®¡æ ¸")
     public ResultModel auditState(@RequestBody AdminBooleanRequest booleanRequest, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 
@@ -51,7 +51,7 @@ public class AdminRestTagController {
     }
 
     @PostMapping("/add")
-    @ApiOperation("¹ÜÀíÔ±Ìí¼Ó±êÇ©")
+    @ApiOperation("ç®¡ç†å‘˜æ·»åŠ æ ‡ç­¾")
     public ResultModel add(@RequestBody TagCreateRequest request) {
         return tagApiService.create(request);
     }
