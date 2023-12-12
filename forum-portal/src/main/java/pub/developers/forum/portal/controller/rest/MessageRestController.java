@@ -21,14 +21,14 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @RestController
 @RequestMapping("/message-rest")
-@Api(tags = "ÏûÏ¢·¢ËÍÄ£¿é")
+@Api(tags = "æ¶ˆæ¯å‘é€æ¨¡å—")
 public class MessageRestController {
 
     @Resource
     private MessageApiService messageApiService;
 
     @PostMapping("/mark-is-read/{id}")
-    @ApiOperation("ÉèÖÃÏûÏ¢ÒÑ¶Á")
+    @ApiOperation("è®¾ç½®æ¶ˆæ¯å·²è¯»")
     public ResultModel delete(@PathVariable("id") Long id, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 

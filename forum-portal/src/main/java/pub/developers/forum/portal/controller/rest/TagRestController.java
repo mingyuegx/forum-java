@@ -19,14 +19,14 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("/tag-rest")
-@Api(tags = "±êÇ©¹ÜÀí")
+@Api(tags = "æ ‡ç­¾ç®¡ç†")
 public class TagRestController {
 
     @Resource
     private TagApiService tagApiService;
 
     @PostMapping("/all")
-    @ApiOperation("·µ»ØËùÓĞ±êÇ©")
+    @ApiOperation("è¿”å›æ‰€æœ‰æ ‡ç­¾")
     public ResultModel<List<TagQueryResponse>> all() {
         return tagApiService.queryAll();
     }

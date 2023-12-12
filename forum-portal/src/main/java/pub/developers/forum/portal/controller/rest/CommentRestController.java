@@ -27,7 +27,7 @@ public class CommentRestController {
     private CommentApiService commentApiService;
 
     @PostMapping("/create")
-    @ApiOperation("针对文章进行评论")
+    @ApiOperation("閽堝鏂囩珷杩涜璇勮")
     public ResultModel create(@RequestBody CommentCreateRequest createRequest, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 

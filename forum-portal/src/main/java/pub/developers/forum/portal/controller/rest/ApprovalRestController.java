@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @RestController
 @RequestMapping("/approval-rest")
-@Api(tags = "µãÔŞºÍÈ¡ÏûµãÔŞ")
+@Api(tags = "ç‚¹èµå’Œå–æ¶ˆç‚¹èµ")
 public class ApprovalRestController {
 
     @Resource

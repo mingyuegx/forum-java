@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
  **/
 @Controller
 @RequestMapping("/article")
-@Api(tags = "ÎÄÕÂ¹ÜÀí")
+@Api(tags = "æ–‡ç« ç®¡ç†")
 public class ArticleInfoController {
 
     @Resource

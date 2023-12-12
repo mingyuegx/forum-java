@@ -23,14 +23,14 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("/article-rest")
-@Api(tags = "ÎÄÕÂ¹ÜÀí")
+@Api(tags = "æ–‡ç« ç®¡ç†")
 public class ArticleRestController {
 
     @Resource
     private ArticleApiService articleApiService;
 
     @PostMapping("/save")
-    @ApiOperation("Ìá½»ÎÄÕÂ»òÕß±£´æÎÄÕÂ")
+    @ApiOperation("æäº¤æ–‡ç« æˆ–è€…ä¿å­˜æ–‡ç« ")
     public ResultModel<Long> save(@RequestBody ArticleSaveArticleRequest articleRequest, HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 
@@ -38,14 +38,14 @@ public class ArticleRestController {
     }
 
     @PostMapping("/{id}")
-    @ApiOperation("²é¿´ÎÄÕÂÏêÇé")
+    @ApiOperation("æŸ¥çœ‹æ–‡ç« è¯¦æƒ…")
     public ResultModel<ArticleInfoResponse> get(@PathVariable("id") Long id, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
         return articleApiService.info(id);
     }
 
     @PostMapping("/editArticleTypes")
-    @ApiOperation("»ñÈ¡ÂÛÌ³Ãû³ÆÁĞ±í")
+    @ApiOperation("è·å–è®ºå›åç§°åˆ—è¡¨")
     public ResultModel<List<ArticleQueryTypesResponse>> getAllType(HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 

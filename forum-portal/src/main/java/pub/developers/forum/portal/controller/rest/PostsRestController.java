@@ -21,14 +21,14 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @RestController
 @RequestMapping("/posts-rest")
-@Api(tags = "文章管理")
+@Api(tags = "鏂囩珷绠＄悊")
 public class PostsRestController {
 
     @Resource
     private PostsApiService postsApiService;
 
     @PostMapping("/delete/{id}")
-    @ApiOperation("文章删除")
+    @ApiOperation("鏂囩珷鍒犻櫎")
     public ResultModel delete(@PathVariable("id") Long id, HttpServletRequest request) {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
 
