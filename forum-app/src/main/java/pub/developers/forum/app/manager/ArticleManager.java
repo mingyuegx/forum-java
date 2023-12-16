@@ -197,6 +197,9 @@ public class ArticleManager extends AbstractPostsManager {
                 .official(request.getOfficial())
                 .marrow(request.getMarrow())
                 .top(request.getTop())
+                .longitude(request.getLongitude())
+                .latitude(request.getLatitude())
+                .radius(request.getRadius())
                 .build();
         if (!ObjectUtils.isEmpty(request.getAuditState()) && !ObjectUtils.isEmpty(AuditStateEn.getEntity(request.getAuditState()))) {
             List<String> auditStates = new ArrayList<>();

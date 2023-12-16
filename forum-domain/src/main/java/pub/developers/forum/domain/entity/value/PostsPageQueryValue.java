@@ -1,11 +1,13 @@
 package pub.developers.forum.domain.entity.value;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -42,5 +44,11 @@ public class PostsPageQueryValue implements Serializable {
      * 2 => 已解决
      */
     private Long commentId;
+
+    private BigDecimal longitude;
+
+    private BigDecimal latitude;
+
+    private Integer radius;
 
 }

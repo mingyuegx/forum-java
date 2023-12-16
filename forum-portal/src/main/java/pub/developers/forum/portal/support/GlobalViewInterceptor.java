@@ -50,7 +50,8 @@ public class GlobalViewInterceptor extends HandlerInterceptorAdapter {
         }
 
         if (!ObjectUtils.isEmpty(sid)) {
-            String userStr = AesUtils.decrypt(sid, key);
+            //String userStr = AesUtils.decrypt(sid, key);
+            String userStr = sid;
             if (StringUtils.isBlank(userStr)) {
                 log.info("{} dectypt the sid return is empty", RequestContext.getTraceId());
                 throw new BizException(ErrorCodeEn.USER_NOT_LOGIN);

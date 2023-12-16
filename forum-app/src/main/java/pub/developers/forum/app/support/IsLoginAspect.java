@@ -27,7 +27,7 @@ public class IsLoginAspect {
      * @return
      * @throws Throwable
      */
-    @Around("execution(* pub.developers.forum..*.*(..)) && @annotation(isLogin)")
+    //@Around("execution(* pub.developers.forum..*.*(..)) && @annotation(isLogin)")
     public Object process(ProceedingJoinPoint joinPoint, IsLogin isLogin) throws Throwable {
         User loginUser = LoginUserContext.getUser();
         CheckUtil.isEmpty(loginUser, ErrorCodeEn.USER_NOT_LOGIN);

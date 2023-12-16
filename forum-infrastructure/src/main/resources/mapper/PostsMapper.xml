@@ -30,7 +30,7 @@
     <sql id="all_column">
         id, is_delete, create_at, update_at,
         audit_state, category, author_id, title, content_type, markdown_content,html_content,
-        views, approvals, comments, type_id, head_img, official, top, sort, marrow, comment_id
+        views, approvals, comments, type_id, head_img, official, top, sort, marrow, comment_id,longitude,latitude
     </sql>
 
     <sql id="table_name">forum_posts</sql>
@@ -162,17 +162,63 @@
     </insert>
 
     <select id="query" parameterType="pub.developers.forum.infrastructure.dal.dataobject.PostsDO" resultMap="resultMap">
-        SELECT <include refid="all_column"/>
+        SELECT <include refid="all_column"/>,
         FROM <include refid="table_name"/>
         <include refid="where_clause_do"/>
         ORDER BY sort ASC, create_at DESC
     </select>
 
-    <select id="queryByValue" parameterType="pub.developers.forum.domain.entity.value.PostsPageQueryValue" resultMap="resultMap">
-        SELECT <include refid="all_column"/>
+    <select id="queryByValue" resultMap="resultMap">
+        SELECT <include refid="all_column"/>, longitude, latitude
+        <if test="qry.latitude != null and  qry.longitude != null and qry.radius != null">
+            ,(st_distance(point(longitude, latitude), point(#{qry.longitude}, #{qry.latitude})))* 111195) as distance
+        </if>
         FROM <include refid="table_name"/>
-        <include refid="where_clause_value"/>
-        ORDER BY sort ASC, create_at DESC
+        where
+        is_delete = 0
+        <if test="auditStates != null">
+            and audit_state IN
+            <foreach collection="auditStates" item="auditState" open="(" separator="," close=")">
+                #{auditState}
+            </foreach>
+        </if>
+        <if test="qry.category != null">
+            and category = #{category}
+        </if>
+        <if test="authorId != null">
+            and author_id = #{authorId}
+        </if>
+        <if test="title != null">
+            and title = #{title}
+        </if>
+        <if test="markdownContent != null">
+            and markdown_content = #{markdownContent}
+        </if>
+        <if test="official != null">
+            and official = #{official}
+        </if>
+        <if test="top != null">
+            and top = #{top}
+        </if>
+        <if test="marrow != null">
+            and marrow = #{marrow}
+        </if>
+        <if test="typeId != null">
+            and type_id = #{typeId}
+        </if>
+        <if test="commentId == 1">
+            and comment_id = 0
+        </if>
+        <if test="commentId == 2">
+            and comment_id != 0
+        </if>
+        order by
+        <if test="qry.latitude != null and  qry.longitude != null and qry.radius != null">
+            and distance <= #{qry.distance}
+             distance asc,
+        </if>
+        sort ASC, create_at DESC
+
     </select>
 
     <update id="update" parameterType="pub.developers.forum.infrastructure.dal.dataobject.PostsDO">

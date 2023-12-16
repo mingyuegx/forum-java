@@ -32,7 +32,7 @@ public class LoginUserAspect {
     @Resource
     private CacheService cacheService;
 
-    @Around("execution(* pub.developers.forum.api..*.*(..))")
+    //@Around("execution(* pub.developers.forum.api..*.*(..))")
     public Object invoke(ProceedingJoinPoint pjp) throws Throwable {
         String token = httpServletRequest.getHeader(Constant.REQUEST_HEADER_TOKEN_KEY);
 

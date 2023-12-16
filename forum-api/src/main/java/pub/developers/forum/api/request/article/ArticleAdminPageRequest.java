@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * @author Qiangqiang.Bian
@@ -37,5 +38,14 @@ public class ArticleAdminPageRequest implements Serializable {
 
     @ApiModelProperty("标题")
     private String title;
+
+    @ApiModelProperty("经度")
+    private BigDecimal longitude;
+
+    @ApiModelProperty("纬度")
+    private BigDecimal latitude;
+
+    @ApiModelProperty("半径")
+    private Integer radius;
 
 }
