@@ -19,7 +19,7 @@ public interface PostsDAO {
 
     List<PostsDO> query(PostsDO postsDO);
 
-    List<PostsDO> queryByValue(PostsPageQueryValue pageQueryValue);
+    List<PostsDO> queryByValue(PostsPageQueryValue qry);
 
     void update(PostsDO postsDO);
 

@@ -45,10 +45,25 @@ public class PostsPageQueryValue implements Serializable {
      */
     private Long commentId;
 
+    /**
+     * 经度
+     */
     private BigDecimal longitude;
+
+    /**
+     * 纬度
+     */
 
     private BigDecimal latitude;
 
-    private Integer radius;
+
+    /**
+     * 半径
+     */
+
+    private BigDecimal radius;
+
+
+
 
 }

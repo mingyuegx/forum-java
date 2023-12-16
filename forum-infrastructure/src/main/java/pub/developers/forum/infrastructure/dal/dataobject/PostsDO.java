@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 /**
  * @author Qiangqiang.Bian
  * @create 2020/10/31
@@ -49,4 +51,6 @@ public class PostsDO extends BaseDO {
     private Boolean marrow;
 
     private Long commentId;
+
+    private BigDecimal distances;
 }

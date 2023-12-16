@@ -46,6 +46,6 @@ public class ArticleAdminPageRequest implements Serializable {
     private BigDecimal latitude;
 
     @ApiModelProperty("半径")
-    private Integer radius;
+    private BigDecimal radius;
 
 }
