@@ -1,10 +1,13 @@
 package pub.developers.forum.domain.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
+
+import java.math.BigDecimal;
 
 /**
  * @author Qiangqiang.Bian
@@ -35,5 +38,9 @@ public class Article extends BasePosts {
 
         return article;
     }
+
+    private BigDecimal longitude;
+
+    private BigDecimal latitude;
 
 }

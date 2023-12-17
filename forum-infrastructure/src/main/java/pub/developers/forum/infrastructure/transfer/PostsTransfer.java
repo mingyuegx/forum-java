@@ -116,6 +116,8 @@ public class PostsTransfer {
                 .sort(article.getSort())
                 .top(article.getTop())
                 .typeId(article.getType().getId())
+                .longitude(article.getLongitude())
+                .latitude(article.getLatitude())
                 .build();
 
         pickPostsDO(postsDO, article);

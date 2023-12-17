@@ -112,6 +112,8 @@ public class ArticleTransfer {
             article.setSort(sort);
             article.setTop(false);
         }
+        article.setLatitude(request.getLatitude());
+        article.setLongitude(request.getLongitude());
 
         return article;
     }

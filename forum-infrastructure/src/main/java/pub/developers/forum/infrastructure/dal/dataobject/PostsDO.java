@@ -52,5 +52,7 @@ public class PostsDO extends BaseDO {
 
     private Long commentId;
 
-    private BigDecimal distances;
+    private BigDecimal longitude;
+
+    private BigDecimal latitude;
 }

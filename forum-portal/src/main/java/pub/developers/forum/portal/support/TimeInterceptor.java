@@ -28,7 +28,7 @@ public class TimeInterceptor implements HandlerInterceptor {
 
         Date start = threadLocal.get();
         Date end = new Date();
-        log.info("{}:请求开始时间{}，结束时间:{}，耗时:{}", request.getRequestURI(), start, end, end.getTime() - start.getTime());
+        log.info("{}:start time{}，end time:{}，total time:{}", request.getRequestURI(), start, end, end.getTime() - start.getTime());
     }
 
 

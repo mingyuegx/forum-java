@@ -64,6 +64,4 @@ public class PostsPageQueryValue implements Serializable {
     private BigDecimal radius;
 
 
-
-
 }
