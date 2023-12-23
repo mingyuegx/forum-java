@@ -20,8 +20,7 @@ public class PostsAuditTask {
 
     @Resource
     private PostsDAO postsDAO;
-
-    @Scheduled(cron = "0/2 * * * * ? ")
+    //@Scheduled(cron = "0/2 * * * * ? ")
     public void task() {
         List<PostsDO> postsDOS = postsDAO.query(PostsDO.builder()
                 .auditState(AuditStateEn.WAIT.getValue())

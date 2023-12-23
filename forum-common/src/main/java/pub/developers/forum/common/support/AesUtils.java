@@ -73,12 +73,18 @@ public class AesUtils {
     }
 
     public static void main(String[] args) throws Exception {
-        String msg = "{\"id\":3,\"email\":\"mingyuegx@126.com\",\"role\":\"SUPER_ADMIN\"}";
+        String msg = "imSystem";
+        String msg2 = "imSystemPassword-1702824280";
+        //String msg3= "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyZDIwYjE4MGIyNjQ0NGQ4OWY5YWQ3Y2MwM2Q4ZGUyMSIsInN1YiI6IlN5c3RlbV9pbVN5c3RlbSIsImlzcyI6ImdvZG93IiwiaWF0IjoxNzAyODIxMzgzLCJleHAiOjE3MDU0MTMzODN9.15aqIvsVl15kMiP-STPhIR30no4a8NjbtJcBtHBGFTg";
         // 实际key请查看const变量文件
         String key = "One.More12345678One.More8765.onE";
-        System.out.println("加密前：" + msg);
+        //System.out.println("加密前：" + msg);
         String pwd = AesUtils.encrypt(msg, key);
+        String pwd2 = AesUtils.encrypt(msg2, key);
         System.out.println("encrypt：" + pwd);
-        System.out.println("decrypt：" + AesUtils.decrypt(pwd, key));
+        System.out.println("encrypt2：" + pwd2);
+        //String decrypt = AesUtils.decrypt(msg3, key);
+        //System.out.println("decrypt:" + decrypt);
+
     }
 }
